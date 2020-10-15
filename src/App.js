@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter, Switch, Link } from "react-router-dom";
-
+import { connect } from "react-redux";
+import auth from "./store/reducers";
 function App() {
   return (
     <div>
@@ -24,4 +25,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  ...state.auth,
+});
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(App);
