@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter, Switch, Link } from "react-router-dom";
+import { Route, BrowserRouter, Switch, Link  , Redirect} from "react-router-dom";
 import { connect } from "react-redux";
 import * as ChatActions from "./store/actions/chatActions";
+import Auth from './components/pages/Auth';
 class App extends Component {
   componentDidMount() {
     this.props.setupSocket();
@@ -27,12 +28,8 @@ class App extends Component {
         </button>
         <BrowserRouter>
           <Switch>
-            <Route
-              path="/login"
-              render={(props) => {
-                return <h1>Login</h1>;
-              }}
-            ></Route>
+            <Route path="/login" component={Auth}></Route>
+            <Route path="/signup" component={Auth}></Route>
             <Route
               path="/"
               render={(props) => {
