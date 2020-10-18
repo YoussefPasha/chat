@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter, Switch, Link  , Redirect} from "react-router-dom";
+import { Route, BrowserRouter, Switch, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as ChatActions from "./store/actions/chatActions";
-import Auth from './components/pages/Auth';
+import Auth from "./components/pages/Auth";
+import "bootstrap/dist/css/bootstrap.min.css";
 class App extends Component {
   componentDidMount() {
     this.props.setupSocket();
@@ -10,22 +11,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            if (this.props.socket) {
-              this.props.socket.send(
-                JSON.stringify({
-                  type: "Hello",
-                  date: "world",
-                })
-              );
-            }
-          }}
-        >
-          {" "}
-          Send Message
-        </button>
         <BrowserRouter>
           <Switch>
             <Route path="/login" component={Auth}></Route>
@@ -33,7 +18,11 @@ class App extends Component {
             <Route
               path="/"
               render={(props) => {
-                return <h1>Root</h1>;
+                if (!this.props.token) {
+                  return <Redirect to="/login" />;
+                } else {
+                  return <h1>Root</h1>;
+                }
               }}
             ></Route>
           </Switch>

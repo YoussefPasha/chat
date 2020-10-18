@@ -9,7 +9,7 @@ class Auth extends Component {
     return (
       <div>
         <div className="auth-wrapper">
-          {this.props.match.params === "signup" ? <Signup /> : <Login />}
+          {this.props.match.path === "/signup" ? <Signup /> : <Login />}
         </div>
       </div>
     );
