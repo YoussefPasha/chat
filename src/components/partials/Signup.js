@@ -32,9 +32,7 @@ class Signup extends Component {
                   }
                 }}
               >
-                <p>
-                  Already have an account? <Link to="/login">Login</Link>
-                </p>
+                
                 <div className="form-group">
                   <label>ُEmail</label>
                   <input
